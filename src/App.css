@@ -6,3 +6,52 @@
   box-sizing: border-box;
   font-family: "Open Sans", sans-serif;
 }
+
+.app {
+  height: 100vh;
+  display: flex;
+  background-color: rgb(32, 87, 87);
+  color: white;
+}
+
+.main {
+  width: 75%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.418)),
+    url("./assets/background.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.moneyList {
+  width: 25%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.money_item.active {
+  background-color: yellowgreen;
+}
+.money {
+  list-style: none;
+  width: 100%;
+  padding: 20px;
+}
+
+.money_item {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  border-radius: 5px;
+}
+.money_item_number {
+  font-size: 17px;
+  font-weight: 200;
+  width: 30%;
+}
+
+.money_item_amount {
+  font-size: 20px;
+  font-weight: 400;
+}
