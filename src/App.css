@@ -21,8 +21,32 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
 }
 
+.top {
+  height: 50%;
+  position: relative;
+}
+.bottom {
+  height: 50%;
+}
+
+.timer {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 5px solid white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  font-weight: 600px;
+  position: absolute;
+  top: 70%;
+  left: 10%;
+}
 .moneyList {
   width: 25%;
   display: flex;
@@ -54,4 +78,124 @@
 .money_item_amount {
   font-size: 20px;
   font-weight: 400;
+}
+
+.answers {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.answer {
+  width: 40%;
+  padding: 10px;
+  text-align: center;
+  background: linear-gradient(rgb(78, 8, 78), black);
+  border: 1px solid white;
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: 200;
+  margin: 0px 10px 20px 10px;
+  cursor: pointer;
+}
+.answer:hover,
+.answer.active {
+  background: rgb(9, 9, 228);
+}
+
+.answer.correct {
+  animation: correct 3s ease-in forwards;
+}
+.answer.wrong {
+  animation: wrong 3s ease-in forwards;
+}
+
+@keyframes correct {
+  0%,
+  30% {
+    background: mediumblue;
+  }
+  20%,
+  60% {
+    background: linear-gradient(rgb(78, 8, 78), black);
+  }
+  100% {
+    background: green;
+  }
+}
+@keyframes wrong {
+  0%,
+  30% {
+    background: mediumblue;
+  }
+  20%,
+  60% {
+    background: linear-gradient(rgb(78, 8, 78), black);
+  }
+  100% {
+    background: rgb(182, 11, 11);
+  }
+}
+.quiz {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.question {
+  width: 70%;
+  background: linear-gradient(rgb(80, 35, 80), black);
+  border: 2px solid white;
+  text-align: center;
+  padding: 20px;
+  font-size: 20px;
+  border-radius: 10px;
+}
+
+.earnedMoneyBox {
+  position: absolute;
+  left: 40%;
+  top: 40%;
+  transform: translate(-50%, -50%);
+  margin: 0 auto;
+  border: 2px solid white;
+  border-radius: 7px;
+  background-color: rgba(128, 128, 128, 0.5);
+  color: rgb(15, 229, 236);
+  padding: 50px 80px;
+}
+
+.inputFull {
+  background-color: darkblue;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.inputBox {
+  border: 2px solid white;
+  border-radius: 7px;
+  padding: 30px 60px;
+  text-align: center;
+}
+
+.inputBox input {
+  width: 300px;
+  height: 50px;
+  font-size: 25px;
+  margin-top: 10px;
+}
+
+.inputBox button {
+  padding: 10px 40px;
+  border-radius: 8px;
+  background-color: white;
+  font-size: 20px;
+  margin: 30px auto;
+  display: block;
 }
