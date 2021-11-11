@@ -1,71 +1,36 @@
 import "./App.css";
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import Quiz from "./components/Quiz";
 import Timer from "./components/Timer";
 import Login from "./components/Login";
+import data from "./Data";
+import moneyList from "./MoneyList.js";
 
 function App() {
   const [questionNumber, setQuestionNumber] = useState(1);
   const [stop, setStop] = useState(false);
   const [earnedMoney, setEarnedMoney] = useState("$ 0");
   const [username, setUsername] = useState(null);
+  const [isMillionaire, setIsMillionaire] = useState(false);
 
-  const data = [
-    {
-      id: 1,
-      question: " What is negative Infinity?",
-      answers: [
-        { text: "Number", correct: true },
-        { text: "Loop", correct: false },
-        { text: "NaN", correct: false },
-        { text: "Symbol", correct: false },
-      ],
-    },
-    {
-      id: 2,
-      question: " Which company developed JavaScript?",
-      answers: [
-        { text: "Google", correct: false },
-        { text: "Microsoft", correct: false },
-        { text: "Netscape", correct: true },
-        { text: "Java", correct: false },
-      ],
-    },
-    {
-      id: 3,
-      question:
-        " What of the following are not the looping structures in JavaScript?",
-      answers: [
-        { text: "For", correct: false },
-        { text: "While", correct: false },
-        { text: "Loop", correct: true },
-        { text: "Do-while", correct: false },
-      ],
-    },
-  ];
+  const resetGameHandler = () => {
+    setQuestionNumber(1);
+    setStop(false);
+    setEarnedMoney("$ 0");
+    setIsMillionaire(false);
+  };
 
-  const moneyList = useMemo(
-    () => [
-      { id: 15, amount: "$1000000" },
-      { id: 14, amount: "$850000" },
-      { id: 13, amount: "$720000" },
-      { id: 12, amount: "$360000" },
-      { id: 11, amount: "$18000" },
-      { id: 10, amount: "$90000" },
-      { id: 9, amount: "$60000" },
-      { id: 8, amount: "$30000" },
-      { id: 7, amount: "$25000" },
-      { id: 6, amount: "$18000" },
-      { id: 5, amount: "$9000" },
-      { id: 4, amount: "$6000" },
-      { id: 3, amount: "$3000" },
-      { id: 2, amount: "$2000" },
-      { id: 1, amount: "$1000" },
-    ],
-    []
+  const restartButton = (
+    <button className="restartBtn" onClick={resetGameHandler}>
+      Play again
+    </button>
   );
 
   useEffect(() => {
+    if (questionNumber > 15) {
+      setIsMillionaire(true);
+      setStop(true);
+    }
     questionNumber > 1 &&
       setEarnedMoney(moneyList.find((m) => m.id === questionNumber - 1).amount);
   }, [questionNumber, moneyList]);
@@ -75,19 +40,37 @@ function App() {
       {username && (
         <>
           {stop && (
+            <div className="earnedMoneyBox">
+              <h1>
+                {username} you earned {earnedMoney}
+              </h1>
+            </div>
+          )}
+          {stop && isMillionaire && (
             <h1 className="earnedMoneyBox">
+              Congratulation...
+              <br /> You are a JavaScript Master
+              <br />
               {username} you earned {earnedMoney}
             </h1>
           )}
           <div className="main">
             <div className="top">
-              <div className="timer">
-                <Timer setStop={setStop} questionNumber={questionNumber} />
-              </div>
+              {!stop && (
+                <div className="timer">
+                  <Timer
+                    stoped={stop}
+                    setStop={setStop}
+                    questionNumber={questionNumber}
+                  />
+                </div>
+              )}
+              {stop && restartButton}
             </div>
             <div className="bottom">
               {!stop && (
                 <Quiz
+                  stoped={stop}
                   data={data}
                   setStop={setStop}
                   questionNumber={questionNumber}

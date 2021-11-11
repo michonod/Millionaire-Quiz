@@ -2,7 +2,10 @@ import React, { useRef } from "react";
 
 const Login = ({ setUsername }) => {
   const formSubmitHandler = () => {
-    setUsername(inputRef.current.value);
+    setUsername(
+      inputRef.current.value.charAt(0).toUpperCase() +
+        inputRef.current.value.slice(1)
+    );
   };
 
   const inputRef = useRef();

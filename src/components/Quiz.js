@@ -3,16 +3,18 @@ import useSound from "use-sound";
 import play from "../assets/play.mp3";
 import correct from "../assets/correct.mp3";
 import wrong from "../assets/wrong.mp3";
+import wait from "../assets/wait.mp3";
 
 const Quiz = ({ questionNumber, data, setQuestionNumber, setStop }) => {
   const [question, setQuestion] = useState(null);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [answerClassName, setAnswerClassName] = useState("answer");
+  const [letsPlay] = useSound(play, { volume: 0.25 });
+  const [correctAnsw] = useSound(correct, { volume: 0.25 });
+  const [wrongAnsw] = useSound(wrong, { volume: 0.25 });
+  const [waitSound, { stop }] = useSound(wait, { volume: 0.25 });
 
-  const [letsPlay] = useSound(play);
-  const [correctAnsw] = useSound(correct);
-  const [wrongAnsw] = useSound(wrong);
-
+  console.log(data);
   useEffect(() => {
     letsPlay();
   }, [letsPlay]);
@@ -20,8 +22,6 @@ const Quiz = ({ questionNumber, data, setQuestionNumber, setStop }) => {
   useEffect(() => {
     setQuestion(data[questionNumber - 1]);
   }, [data, questionNumber]);
-
-  let answerClass = `answer active`;
 
   const answerClickHandler = (a) => {
     setSelectedAnswer(a);
@@ -38,11 +38,12 @@ const Quiz = ({ questionNumber, data, setQuestionNumber, setStop }) => {
         }, 1500);
       } else {
         wrongAnsw();
+        stop();
         setTimeout(() => {
           setStop(true);
         }, 1500);
       }
-    }, 7000);
+    }, 6000);
   };
 
   return (
