@@ -30,7 +30,7 @@
   position: relative;
 }
 .bottom {
-  height: 50%;
+  height: 60%;
 }
 
 .timer {
@@ -44,7 +44,7 @@
   font-size: 30px;
   font-weight: 600px;
   position: absolute;
-  top: 70%;
+  top: 50%;
   left: 10%;
 }
 .moneyList {
