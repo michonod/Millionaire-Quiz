@@ -20,10 +20,10 @@ const Timer = ({ setStop, stoped, questionNumber }) => {
       setTimer((prevTimer) => prevTimer - 1);
     }, 1000);
     return () => clearInterval(interval);
-  }, [setStop, timer]);
+  }, [setStop, timer, gameOverSound, stop, waitSound]);
   useEffect(() => {
     setTimer(30);
-  }, [questionNumber, stoped]);
+  }, [questionNumber, stoped, gameOverSound]);
   return timer;
 };
 

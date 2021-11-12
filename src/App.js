@@ -33,7 +33,7 @@ function App() {
     }
     questionNumber > 1 &&
       setEarnedMoney(moneyList.find((m) => m.id === questionNumber - 1).amount);
-  }, [questionNumber, moneyList]);
+  }, [questionNumber]);
   return (
     <div className="app">
       {!username && <Login setUsername={setUsername} />}
@@ -65,7 +65,6 @@ function App() {
                   />
                 </div>
               )}
-              {stop && restartButton}
             </div>
             <div className="bottom">
               {!stop && (
@@ -81,11 +80,13 @@ function App() {
           </div>
           <div className="moneyList">
             <ul className="money">
+              {stop && restartButton}
               {moneyList.map((list) => {
                 return (
                   <li
+                    key={list.id}
                     className={
-                      questionNumber == +list.id
+                      questionNumber === +list.id
                         ? "money_item active"
                         : "money_item"
                     }

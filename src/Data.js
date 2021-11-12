@@ -65,7 +65,7 @@ const data = [
     answers: [
       { text: "var color = 'red','blue','green'", correct: false },
       { text: "var color = {'red','blue','green'}", correct: false },
-      { text: "var color = ['red','blue','green]'", correct: true },
+      { text: "var color = ['red','blue','green']", correct: true },
       { text: "var color = [{'red','blue','green'}]", correct: false },
     ],
   },

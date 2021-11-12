@@ -12,9 +12,8 @@ const Quiz = ({ questionNumber, data, setQuestionNumber, setStop }) => {
   const [letsPlay] = useSound(play, { volume: 0.25 });
   const [correctAnsw] = useSound(correct, { volume: 0.25 });
   const [wrongAnsw] = useSound(wrong, { volume: 0.25 });
-  const [waitSound, { stop }] = useSound(wait, { volume: 0.25 });
+  const [, { stop }] = useSound(wait, { volume: 0.25 });
 
-  console.log(data);
   useEffect(() => {
     letsPlay();
   }, [letsPlay]);
@@ -52,6 +51,7 @@ const Quiz = ({ questionNumber, data, setQuestionNumber, setStop }) => {
       <div className="answers">
         {question?.answers.map((a) => (
           <div
+            key={Math.random()}
             className={selectedAnswer === a ? answerClassName : "answer"}
             onClick={() => answerClickHandler(a)}
           >
