@@ -224,6 +224,7 @@
 @media screen and (max-width: 567px) {
   .app {
     font-size: 10px;
+    overflow: hidden;
   }
   .answers {
     font-size: 14px;
@@ -254,5 +255,10 @@
   }
   .moneyList {
     width: 35vw;
+  }
+  .timer {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
   }
 }
